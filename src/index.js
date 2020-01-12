@@ -37,8 +37,10 @@ function evaluateCredentials() {
   let customerId = parseInt(usernameInputVal.slice(8,10));
 
   if (usernameInputVal.length === 10 && customerUserName === 'customer' && customerId <= 50 && passwordInputVal === 'overlook2019') {
+    currentCustomer = new Customer(customerId, userData.find(data => customerId === data.id).name);
     changeToCustomerDash();
   } else if (usernameInputVal === 'manager' && passwordInputVal === 'overlook2019') {
+    manager = new Manager();
     changeToManagerDash();
   } else {
     displayErrors();
@@ -46,7 +48,10 @@ function evaluateCredentials() {
 }
 
 function changeToCustomerDash() {
-  console.log('showing customer dash');
+  $('.login-page').addClass('hidden');
+  $('.customer-dash').removeClass('hidden');
+  $('.username-h2').text(`${currentCustomer.name}'s Guest Portal`);
+  $('#book-room-btn').on('click', showBookingPage);
 }
 
 function changeToManagerDash() {
@@ -55,4 +60,8 @@ function changeToManagerDash() {
 
 function displayErrors() {
   console.log('showing login error');
+}
+
+function showBookingPage() {
+  console.log('showing booking page');
 }
