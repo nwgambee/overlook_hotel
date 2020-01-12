@@ -1,13 +1,63 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <title>Webpack Starter Kit</title>
-  </head>
-  <body>
-    <h1>Webpack Starter Kit</h1>
 
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+<head>
+  <title>Overlook Hotel</title>
+  <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1 class="title">OVERLOOK HOTEL</h1>
+    <button type="button" name="button" class="logout-btn">Logout</button>
+  </header>
+  <section class="login-page">
+    <form class="login-form" action="index.html" method="post">
+      <label for="" class="username-label">Username</label>
+      <input type="text" name="" value="" class="username-input">
+      <label class="password-label" for="">Password</label>
+      <input type="password" name="" value="" class="password-input">
+      <button type="button" name="button" class="login-btn">Log In</button>
+    </form>
+  </section>
+  <section class="customer-dash hidden">
+    <div class="welcome-user-nav">
+      <button id="book-room-btn" type="button" name="button">Book A Room</button>
+      <h2 class="username-h2">Welcome, [user]!</h2>
+    </div>
+    <div class="room-booking">
+      <h3 id="book-room-h3">Book A Room</h3>
+      <label id="date-label" for="">Choose Date:</label>
+      <input id="date-input" type="date" name="" value="">
+      <button id="check-avail-btn" type="button" name="button">Check Availibility</button>
+      <div class="available-rooms">
+        <p>list available rooms in this div</p>
+      </div>
+    </div>
+    <section class="info-boxes  ">
+      <div class="customer-info" id="past-bookings">
+        <h3 class="customer-info-h3">Past Bookings</h3>
+        <div class="inner-box past-booked-list">
+          <p>past booked<p>
+        </div>
+      </div>
+      <div class="customer-info" id="upcoming-bookings">
+        <h3 class="customer-info-h3">Upcoming Bookings</h3>
+        <div class="inner-box upcoming-booked-list">
+          <p>upcoming bookings</p>
+        </div>
+      </div>
+      <div class="customer-info" id="total-spent">
+        <h3 class="customer-info-h3">Total Spent To Date</h3>
+        <div class="inner-box">
+          <p>$610</p>
+        </div>
+      </div>
+    </section>
+  </section>
+  <section class="manager-dash">
+  </section>
 
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
-  </body>
+  <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+</body>
+
 </html>

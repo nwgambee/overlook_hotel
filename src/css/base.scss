@@ -1,6 +1,196 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
 $primary-background: pink;
-
+// need mixins for btns and variables for colors
 body {
-  background-color: $primary-background;
+  font-family: 'Cabin', sans-serif;
+  background-color: #B098A4;
+}
+
+.hidden {
+  display: none !important;
+}
+// header styling //
+.title {
+  grid-area: title;
+}
+
+.logout-btn {
+  grid-area: logout-btn;
+  border-radius: 10px;
+  height: 40px;
+  width: 80px;
+  margin-top: 3.5%;
+  font-family: 'Cabin', sans-serif;
+  background-color: #DBD9DB;
+  font-size: 1em;
+}
+
+header {
+  color: #45503B;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas: ". title title logout-btn";
+  border-bottom: 1px solid grey;
+}
+// log in form styling NEED MIXINS AND VARIABLES TO CLEAN UP//
+.username-input {
+  grid-area: user-input;
+  border-radius: 8px;
+  width: 175px;
+  font-size: 0.8em;
+}
+
+.username-label {
+  color: #45503B;
+  font-size: 1.4em;
+  grid-area: user-label;
+}
+
+.password-input {
+  grid-area: pass-input;
+  border-radius: 8px;
+  width: 175px;
+  font-size: 0.8em;
+}
+
+.password-label {
+  font-size: 1.4em;
+  color: #45503B;
+  grid-area: pass-label;
+}
+
+.login-btn {
+  font-size: 1em;
+  grid-area: login-btn;
+  width: 100px;
+  border-radius: 5px;
+  font-family: 'Cabin', sans-serif;
+  background-color: #DBD9DB;
+}
+
+.login-form {
+  display: none;
+  margin-top: 100px;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 0.3fr 0.3fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-row-gap: 20px;
+  grid-template-areas: ". user-label user-input ." ". pass-label pass-input ." ". login-btn login-btn .";
+}
+
+// customer dash styling //
+
+#past-bookings {
+  grid-area: past;
+}
+
+.customer-info-h3 {
+  text-align: center;
+  color: #45503B;
+  font-size: 1.3em;
+}
+#upcoming-bookings {
+  grid-area: upcoming;
+}
+#total-spent {
+  grid-area: total;
+}
+
+.info-boxes {
+  margin-top: 2%;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "past upcoming total";
+}
+
+#book-room-btn {
+  grid-area: book-room-btn;
+  border-radius: 10px;
+  height: 40px;
+  width: 80px;
+  margin-top: 3.5%;
+  font-family: 'Cabin', sans-serif;
+  background-color: #DBD9DB;
+  font-size: 1em;
+}
+
+.username-h2 {
+  grid-area: welcome;
+  color: black;
+}
+
+.welcome-user-nav {
+  margin-top: 3%;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas: "book-room-btn welcome welcome ."
+}
+
+.customer-info {
+  border: 2px solid black;
+  border-radius: 10px;
+  align-content: center;
+  height: 400px;
+  width: 300px;
+}
+
+.inner-box {
+  padding: 6px;
+}
+
+#book-room-h3 {
+  grid-area: book-room;
+  font-style: italic;
+  color: #45503B;
+}
+
+#date-label {
+  grid-area: date-label;
+  justify-self: end;
+}
+
+#check-avail-btn {
+
+  grid-area: check-btn;
+  border-radius: 10px;
+  height: 40px;
+  width: 80px;
+  font-family: 'Cabin', sans-serif;
+  background-color: #DBD9DB;
+  font-size: 1em;
+}
+
+#date-input {
+  grid-area: date-input;
+  justify-self: start;
+
+}
+
+.available-rooms {
+  grid-area: available-rooms;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.room-booking {
+  margin-left: 29%;
+  width: 40%;
+  border: 2px solid #45503B;
+  border-radius: 5px;
+  margin-top: 30px;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "book-room book-room"
+    "date-label date-input"
+    "check-btn check-btn"
+    "available-rooms available-rooms";
+  grid-row-gap: 15px;
+  grid-column-gap: 10px;
 }
