@@ -1,13 +1,15 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
 $primary-background: pink;
-
+// need mixins for btns and variables for colors
 body {
   font-family: 'Cabin', sans-serif;
   background-color: #B098A4;
 }
 
+.hidden {
+  display: none;
+}
 // header styling //
-
 .title {
   grid-area: title;
 }
@@ -30,13 +32,12 @@ header {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-areas: ". title title logout-btn";
 }
-
-// log in form styling //
+// log in form styling NEED MIXINS AND VARIABLES TO CLEAN UP//
 .username-input {
   grid-area: user-input;
   border-radius: 8px;
   width: 175px;
-  font-size: .8em;
+  font-size: 0.8em;
 }
 
 .username-label {
@@ -49,7 +50,7 @@ header {
   grid-area: pass-input;
   border-radius: 8px;
   width: 175px;
-  font-size: .8em;
+  font-size: 0.8em;
 }
 
 .password-label {
@@ -65,10 +66,10 @@ header {
   border-radius: 5px;
   font-family: 'Cabin', sans-serif;
   background-color: #DBD9DB;
-
 }
 
 .login-form {
+  display: none;
   margin-top: 100px;
   display: grid;
   justify-items: center;
@@ -76,4 +77,66 @@ header {
   grid-template-rows: 1fr 1fr 1fr;
   grid-row-gap: 20px;
   grid-template-areas: ". user-label user-input ." ". pass-label pass-input ." ". login-btn login-btn .";
+}
+
+// customer dash styling //
+
+#past-bookings {
+  grid-area: past;
+}
+
+.customer-info-h3 {
+  text-align: center;
+  color: #45503B;
+  font-size: 1.3em;
+}
+#upcoming-bookings {
+  grid-area: upcoming;
+}
+#total-spent {
+  grid-area: total;
+}
+
+.info-boxes {
+  margin-top: 2%;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "past upcoming total";
+}
+
+#book-room-btn {
+  grid-area: book-room-btn;
+  border-radius: 10px;
+  height: 40px;
+  width: 80px;
+  margin-top: 3.5%;
+  font-family: 'Cabin', sans-serif;
+  background-color: #DBD9DB;
+  font-size: 1em;
+}
+
+.username-h2 {
+  grid-area: welcome;
+  color: black;
+}
+
+.welcome-user-nav {
+  margin-top: 3%;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas: "book-room-btn welcome welcome ."
+}
+
+.customer-info {
+  border: 2px solid black;
+  border-radius: 10px;
+  align-content: center;
+  height: 400px;
+  width: 300px;
+}
+
+.inner-box {
+  padding: 6px;
 }

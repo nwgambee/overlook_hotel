@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <title>Overlook Hotel</title>
-    <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <header>
-      <h1 class="title">OVERLOOK HOTEL</h1>
-      <button type="button" name="button" class="logout-btn">Logout</button>
-    </header>
+
+<head>
+  <title>Overlook Hotel</title>
+  <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1 class="title">OVERLOOK HOTEL</h1>
+    <button type="button" name="button" class="logout-btn">Logout</button>
+  </header>
+  <!-- <section class=" login-page">
     <form class="login-form" action="index.html" method="post">
       <label for="" class="username-label">Username</label>
       <input type="text" name="" value="" class="username-input">
@@ -16,7 +19,38 @@
       <input type="password" name="" value="" class="password-input">
       <button type="button" name="button" class="login-btn">Log In</button>
     </form>
+  </section> -->
+  <section class="customer-dash">
+    <div class="welcome-user-nav">
+      <button id="book-room-btn" type="button" name="button">Book A Room</button>
+      <h2 class="username-h2">Welcome, [user]!</h2>
+    </div>
+    <section class="info-boxes">
+      <div class="customer-info" id="past-bookings">
+        <h3 class="customer-info-h3">Past Bookings</h3>
+        <div class="inner-box past-booked-list">
+          <p>past booked<p>
+        </div>
+      </div>
+      <div class="customer-info" id="upcoming-bookings">
+        <h3 class="customer-info-h3">Upcoming Bookings</h3>
+        <div class="inner-box upcoming-booked-list">
+          <p>upcoming bookings</p>
+        </div>
+      </div>
+      <div class="customer-info" id="total-spent">
+        <h3 class="customer-info-h3">Total Spent To Date</h3>
+        <div class="inner-box">
+          <p>$610</p>
+        </div>
+      </div>
+    </section>
+  </section>
+  <section class="manager-dash">
 
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
-  </body>
+  </section>
+
+  <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+</body>
+
 </html>
