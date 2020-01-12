@@ -7,7 +7,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 // header styling //
 .title {
@@ -31,6 +31,7 @@ header {
   justify-items: center;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-areas: ". title title logout-btn";
+  border-bottom: 1px solid grey;
 }
 // log in form styling NEED MIXINS AND VARIABLES TO CLEAN UP//
 .username-input {
@@ -139,4 +140,57 @@ header {
 
 .inner-box {
   padding: 6px;
+}
+
+#book-room-h3 {
+  grid-area: book-room;
+  font-style: italic;
+  color: #45503B;
+}
+
+#date-label {
+  grid-area: date-label;
+  justify-self: end;
+}
+
+#check-avail-btn {
+
+  grid-area: check-btn;
+  border-radius: 10px;
+  height: 40px;
+  width: 80px;
+  font-family: 'Cabin', sans-serif;
+  background-color: #DBD9DB;
+  font-size: 1em;
+}
+
+#date-input {
+  grid-area: date-input;
+  justify-self: start;
+
+}
+
+.available-rooms {
+  grid-area: available-rooms;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.room-booking {
+  margin-left: 29%;
+  width: 40%;
+  border: 2px solid #45503B;
+  border-radius: 5px;
+  margin-top: 30px;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "book-room book-room"
+    "date-label date-input"
+    "check-btn check-btn"
+    "available-rooms available-rooms";
+  grid-row-gap: 15px;
+  grid-column-gap: 10px;
 }

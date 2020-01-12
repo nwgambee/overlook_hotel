@@ -5,13 +5,12 @@
   <title>Overlook Hotel</title>
   <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet">
 </head>
-
 <body>
   <header>
     <h1 class="title">OVERLOOK HOTEL</h1>
     <button type="button" name="button" class="logout-btn">Logout</button>
   </header>
-  <!-- <section class=" login-page">
+  <section class="login-page">
     <form class="login-form" action="index.html" method="post">
       <label for="" class="username-label">Username</label>
       <input type="text" name="" value="" class="username-input">
@@ -19,13 +18,22 @@
       <input type="password" name="" value="" class="password-input">
       <button type="button" name="button" class="login-btn">Log In</button>
     </form>
-  </section> -->
-  <section class="customer-dash">
+  </section>
+  <section class="customer-dash hidden">
     <div class="welcome-user-nav">
       <button id="book-room-btn" type="button" name="button">Book A Room</button>
       <h2 class="username-h2">Welcome, [user]!</h2>
     </div>
-    <section class="info-boxes">
+    <div class="room-booking">
+      <h3 id="book-room-h3">Book A Room</h3>
+      <label id="date-label" for="">Choose Date:</label>
+      <input id="date-input" type="date" name="" value="">
+      <button id="check-avail-btn" type="button" name="button">Check Availibility</button>
+      <div class="available-rooms">
+        <p>list available rooms in this div</p>
+      </div>
+    </div>
+    <section class="info-boxes  ">
       <div class="customer-info" id="past-bookings">
         <h3 class="customer-info-h3">Past Bookings</h3>
         <div class="inner-box past-booked-list">
@@ -47,7 +55,6 @@
     </section>
   </section>
   <section class="manager-dash">
-
   </section>
 
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
