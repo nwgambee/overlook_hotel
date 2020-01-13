@@ -22,7 +22,7 @@ Promise.all([userData, roomData, bookingData]).then(data => {
   roomData = data[1];
   bookingData = data[2];
 }).then(() => {
-
+  booking = new Bookings(bookingData, roomData);
 })
 
 // EVENT LISTENERS //
@@ -37,7 +37,7 @@ function evaluateCredentials() {
   let customerId = parseInt(usernameInputVal.slice(8,10));
 
   if (usernameInputVal.length === 10 && customerUserName === 'customer' && customerId <= 50 && passwordInputVal === 'overlook2019') {
-    currentCustomer = new Customer(customerId, userData.find(data => customerId === data.id).name);
+    currentCustomer = new Customer(customerId, userData.find(data => customerId === data.id).name, booking.findPastBookings(), booking.findUpcomingBookings());
     changeToCustomerDash();
   } else if (usernameInputVal === 'manager' && passwordInputVal === 'overlook2019') {
     manager = new Manager();
@@ -52,6 +52,7 @@ function changeToCustomerDash() {
   $('.customer-dash').removeClass('hidden');
   $('.username-h2').text(`${currentCustomer.name}'s Guest Portal`);
   $('#book-room-btn').on('click', showBookingPage);
+  console.log(currentCustomer);
 }
 
 function changeToManagerDash() {
