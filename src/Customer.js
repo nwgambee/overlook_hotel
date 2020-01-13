@@ -5,8 +5,9 @@ class Customer {
     this.pastBookings = pastBookings;
     this.upcomingBookings = upcomingBookings;
   }
-  findTotalSpent() {
-    
+  bookRoom(roomNumber, date) {
+    console.log(roomNumber);
+    console.log(date);
   }
 }
 
