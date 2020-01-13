@@ -107,6 +107,7 @@ function displayAvailableRooms() {
 // this is a little bit of duplication, trying to get around doing this
 function bookRoom(event) {
   currentCustomer.bookRoom(event.target.id, chosenDate)
+  window.alert(`Room ${event.target.id} has been booked for ${chosenDate}.`)
 }
 
 // helper functions //
