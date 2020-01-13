@@ -9,6 +9,7 @@ import Customer from './Customer.js';
 import Manager from './Manager.js';
 import Bookings from './Bookings.js';
 
+// variables //
 let todaysDate = getDate();
 let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()).then(data => data.users);
 let roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(data => data.rooms);
@@ -18,6 +19,7 @@ let currentCustId = 0;
 let booking;
 let manager;
 
+// fetching logic pt.2 (pt.1 in variables) //
 Promise.all([userData, roomData, bookingData]).then(data => {
   userData = data[0];
   roomData = data[1];
@@ -30,7 +32,7 @@ Promise.all([userData, roomData, bookingData]).then(data => {
 
 $('.login-btn').on('click', evaluateCredentials);
 
-// DOM UPDATES
+// DOM UPDATES //
 function evaluateCredentials() {
   let passwordInputVal = $('.password-input').val();
   let usernameInputVal = $('.username-input').val();
@@ -53,6 +55,7 @@ function changeToCustomerDash() {
   $('.customer-dash').removeClass('hidden');
   $('.username-h2').text(`${currentCustomer.name}'s Guest Portal`);
   $('#book-room-btn').on('click', showBookingPage);
+  console.log(todaysDate);
   console.log(currentCustomer);
 }
 
@@ -68,10 +71,11 @@ function showBookingPage() {
   console.log('showing booking page');
 }
 
-// helper functions
+// helper functions //
 
 function getDate() {
 var today = new Date();
-var date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
-return date;
+var date = today.getFullYear()+'/0'+(today.getMonth()+1)+'/'+today.getDate();
+console.log(date.toString());
+return date.toString();
 }

@@ -4,13 +4,10 @@ class Bookings {
     this.roomData = roomData;
   }
   findPastBookings(date, id) {
-    // find this customer's bookings
-    // return 'past bookings';
-    console.log(date);
-    console.log(id);
+    return this.bookingData.filter(booking => booking.userID === id && date > booking.date)
   }
   findUpcomingBookings(date, id) {
-    return 'upcoming bookings';
+    return this.bookingData.filter(booking => booking.userID === id && date <= booking.date)
   }
 }
 
