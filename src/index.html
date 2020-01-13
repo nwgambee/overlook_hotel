@@ -13,9 +13,9 @@
   <section class="login-page">
     <form class="login-form" action="index.html" method="post">
       <label for="" class="username-label">Username</label>
-      <input type="text" name="" value="" class="username-input">
+      <input type="text" name="" value="customer41" class="username-input">
       <label class="password-label" for="">Password</label>
-      <input type="password" name="" value="" class="password-input">
+      <input type="password" name="" value="overlook2019" class="password-input">
       <button type="button" name="button" class="login-btn">Log In</button>
     </form>
   </section>
@@ -24,7 +24,7 @@
       <button id="book-room-btn" type="button" name="button">Book A Room</button>
       <h2 class="username-h2">Welcome, [user]!</h2>
     </div>
-    <div class="room-booking">
+    <div class="room-booking hidden">
       <h3 id="book-room-h3">Book A Room</h3>
       <label id="date-label" for="">Choose Date:</label>
       <input id="date-input" type="date" name="" value="">
@@ -33,23 +33,21 @@
         <p>list available rooms in this div</p>
       </div>
     </div>
-    <section class="info-boxes  ">
+    <section class="info-boxes">
       <div class="customer-info" id="past-bookings">
         <h3 class="customer-info-h3">Past Bookings</h3>
-        <div class="inner-box past-booked-list">
-          <p>past booked<p>
-        </div>
+        <ul class="inner-box past-booked-list">
+        </ul>
       </div>
       <div class="customer-info" id="upcoming-bookings">
         <h3 class="customer-info-h3">Upcoming Bookings</h3>
-        <div class="inner-box upcoming-booked-list">
-          <p>upcoming bookings</p>
-        </div>
+        <ul class="inner-box upcoming-booked-list">
+        </ul>
       </div>
       <div class="customer-info" id="total-spent">
         <h3 class="customer-info-h3">Total Spent To Date</h3>
         <div class="inner-box">
-          <p>$610</p>
+          <p id="dollar-amount">$610</p>
         </div>
       </div>
     </section>
