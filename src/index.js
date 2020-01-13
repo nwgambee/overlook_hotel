@@ -15,6 +15,7 @@ let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/u
 let roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(data => data.rooms);
 let bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(response => response.json()).then(data => data.bookings);
 let currentCustomer;
+let chosenDate;
 let booking;
 let manager;
 
@@ -30,8 +31,13 @@ Promise.all([userData, roomData, bookingData]).then(data => {
 // EVENT LISTENERS //
 
 $('.login-btn').on('click', evaluateCredentials);
+$('.logout-btn').on('click', returnToHome);
 
 // DOM UPDATES //
+function returnToHome() {
+  location.reload();
+}
+
 function evaluateCredentials() {
   let passwordInputVal = $('.password-input').val();
   let usernameInputVal = $('.username-input').val();
@@ -71,7 +77,6 @@ function updateUpcomingBookingsHTML(upcomingBookings) {
 }
 
 function updateTotalSpendHTML(pastBookings) {
-  console.log('updating total spent');
   $('#dollar-amount').text(`$${booking.getTotalSpent(currentCustomer.id)}`);
 }
 
@@ -84,7 +89,25 @@ function displayErrors() {
 }
 
 function showBookingPage() {
-  console.log('showing booking page');
+  $('.room-booking').toggleClass('hidden');
+  $('.info-boxes').toggleClass('hidden');
+  $('#check-avail-btn').on('click', displayAvailableRooms);
+}
+
+function displayAvailableRooms() {
+  $('.available-rooms').html('');
+  let rawDate = $('#date-input').val();
+  let formattedDate = rawDate.toString().replace(/-/g,'/');
+  chosenDate = formattedDate;
+  let availableRooms = booking.findAvailableRooms(formattedDate);
+  availableRooms.forEach(room => $('.available-rooms').append(`<li>Room ${room.number}, a ${room.roomType} with a ${room.bedSize} is available this night. It costs $${room.costPerNight} per night.<button class="book-this-room" id="${room.number}">Book This Room</button></li>`));
+  $('.book-this-room').on('click', bookRoom);
+}
+
+// this is a little bit of duplication, trying to get around doing this
+function bookRoom(event) {
+  currentCustomer.bookRoom(event.target.id, chosenDate)
+  window.alert(`Room ${event.target.id} has been booked for ${chosenDate}.`)
 }
 
 // helper functions //

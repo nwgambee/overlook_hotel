@@ -17,6 +17,13 @@ class Bookings {
       return acc += pricePerRoom;
     }, 0);
   }
+  findAvailableRooms(date) {
+    return this.roomData.filter(room => {
+      return !this.bookingData.find(booking => {
+        return (room.number === booking.roomNumber && date === booking.date);
+      })
+    })
+  }
 }
 
 export default Bookings;
