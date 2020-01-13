@@ -85,6 +85,18 @@ function displayErrors() {
 
 function showBookingPage() {
   console.log('showing booking page');
+  $('.room-booking').toggleClass('hidden');
+  $('.info-boxes').toggleClass('hidden');
+  $('#check-avail-btn').on('click', displayAvailableRooms);
+}
+
+function displayAvailableRooms() {
+  let rawDate = $('#date-input').val();
+  let formattedDate = rawDate.toString().replace(/-/g,'/');
+  let availableRooms = booking.findAvailableRooms(formattedDate);
+  console.log(availableRooms);
+  availableRooms.forEach(room => $('.available-rooms').append(`<li>Room ${room.number}, a ${room.roomType} with a ${room.bedSize} is available this night. It costs $${room.costPerNight} per night.</li>`));
+
 }
 
 // helper functions //
