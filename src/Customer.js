@@ -5,6 +5,9 @@ class Customer {
     this.pastBookings = pastBookings;
     this.upcomingBookings = upcomingBookings;
   }
+  findTotalSpent() {
+    
+  }
 }
 
 export default Customer;

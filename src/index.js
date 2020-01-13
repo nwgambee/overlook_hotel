@@ -15,7 +15,6 @@ let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/u
 let roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(data => data.rooms);
 let bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(response => response.json()).then(data => data.bookings);
 let currentCustomer;
-let currentCustId = 0;
 let booking;
 let manager;
 
@@ -51,12 +50,29 @@ function evaluateCredentials() {
 }
 
 function changeToCustomerDash() {
+  console.log(currentCustomer);
+
   $('.login-page').addClass('hidden');
   $('.customer-dash').removeClass('hidden');
   $('.username-h2').text(`${currentCustomer.name}'s Guest Portal`);
   $('#book-room-btn').on('click', showBookingPage);
-  console.log(todaysDate);
-  console.log(currentCustomer);
+
+  updatePastBookingsHTML(currentCustomer.pastBookings);
+  updateUpcomingBookingsHTML(currentCustomer.upcomingBookings);
+  updateTotalSpendHTML();
+}
+
+function updatePastBookingsHTML(pastBookings) {
+  pastBookings.forEach(booking => $('.past-booked-list').append(`<li>You stayed in room ${booking.roomNumber} on ${booking.date}</li>`));
+}
+
+function updateUpcomingBookingsHTML(upcomingBookings) {
+  upcomingBookings.forEach(booking => $('.upcoming-booked-list').append(`<li>You are staying in room ${booking.roomNumber} on ${booking.date}</li>`));
+}
+
+function updateTotalSpendHTML(pastBookings) {
+  console.log('updating total spent');
+  $('#dollar-amount').text(`$${booking.getTotalSpent(currentCustomer.id)}`);
 }
 
 function changeToManagerDash() {
@@ -76,6 +92,5 @@ function showBookingPage() {
 function getDate() {
 var today = new Date();
 var date = today.getFullYear()+'/0'+(today.getMonth()+1)+'/'+today.getDate();
-console.log(date.toString());
 return date.toString();
 }
