@@ -31,8 +31,13 @@ Promise.all([userData, roomData, bookingData]).then(data => {
 // EVENT LISTENERS //
 
 $('.login-btn').on('click', evaluateCredentials);
+$('.logout-btn').on('click', returnToHome);
 
 // DOM UPDATES //
+function returnToHome() {
+  location.reload();
+}
+
 function evaluateCredentials() {
   let passwordInputVal = $('.password-input').val();
   let usernameInputVal = $('.username-input').val();

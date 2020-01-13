@@ -6,8 +6,21 @@ class Customer {
     this.upcomingBookings = upcomingBookings;
   }
   bookRoom(roomNumber, date) {
-    console.log(roomNumber);
-    console.log(date);
+    fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "userID": this.id,
+        "date": date,
+        "roomNumber": roomNumber
+      })
+    }).then(() => {
+      console.log('room booked!');
+    }).catch(() => {
+      console.log('failure to book room');
+    })
   }
 }
 
