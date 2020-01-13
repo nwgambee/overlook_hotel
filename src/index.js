@@ -9,6 +9,7 @@ import Customer from './Customer.js';
 import Manager from './Manager.js';
 import Bookings from './Bookings.js';
 
+let todaysDate = getDate();
 let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()).then(data => data.users);
 let roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(data => data.rooms);
 let bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(response => response.json()).then(data => data.bookings);
@@ -37,7 +38,7 @@ function evaluateCredentials() {
   let customerId = parseInt(usernameInputVal.slice(8,10));
 
   if (usernameInputVal.length === 10 && customerUserName === 'customer' && customerId <= 50 && passwordInputVal === 'overlook2019') {
-    currentCustomer = new Customer(customerId, userData.find(data => customerId === data.id).name, booking.findPastBookings(), booking.findUpcomingBookings());
+    currentCustomer = new Customer(customerId, userData.find(data => customerId === data.id).name, booking.findPastBookings(todaysDate, customerId), booking.findUpcomingBookings(todaysDate, customerId));
     changeToCustomerDash();
   } else if (usernameInputVal === 'manager' && passwordInputVal === 'overlook2019') {
     manager = new Manager();
@@ -65,4 +66,12 @@ function displayErrors() {
 
 function showBookingPage() {
   console.log('showing booking page');
+}
+
+// helper functions
+
+function getDate() {
+var today = new Date();
+var date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
+return date;
 }

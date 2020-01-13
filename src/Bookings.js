@@ -3,11 +3,13 @@ class Bookings {
     this.bookingData = bookingData;
     this.roomData = roomData;
   }
-  findPastBookings() {
+  findPastBookings(date, id) {
     // find this customer's bookings
-    return 'past bookings';
+    // return 'past bookings';
+    console.log(date);
+    console.log(id);
   }
-  findUpcomingBookings() {
+  findUpcomingBookings(date, id) {
     return 'upcoming bookings';
   }
 }
