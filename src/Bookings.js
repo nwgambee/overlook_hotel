@@ -24,6 +24,12 @@ class Bookings {
       })
     })
   }
+  findTotalRevenue(date) {
+    return this.bookingData.filter(booking => booking.date === date).reduce((acc, sum) => {
+      let pricePerRoom = Math.floor(this.roomData.find(room => room.number === sum.roomNumber).costPerNight);
+      return acc += pricePerRoom;
+    }, 0)
+  }
 }
 
 export default Bookings;

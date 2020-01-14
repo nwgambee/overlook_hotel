@@ -81,7 +81,13 @@ function updateTotalSpendHTML(pastBookings) {
 }
 
 function changeToManagerDash() {
-  console.log('showing manager dash');
+  $('.login-page').addClass('hidden');
+  $('.manager-dash').removeClass('hidden');
+  displayRevenue(booking.findTotalRevenue(todaysDate))
+}
+
+function displayRevenue(revenue) {
+  $('.todays-revenue').append(`<p id="revenue-p">$${revenue}</p>`);
 }
 
 function displayErrors() {
