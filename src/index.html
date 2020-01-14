@@ -13,7 +13,7 @@
   <section class="login-page">
     <form class="login-form" action="index.html" method="post">
       <label for="" class="username-label">Username</label>
-      <input type="text" name="" value="customer41" class="username-input">
+      <input type="text" name="" value="manager" class="username-input">
       <label class="password-label" for="">Password</label>
       <input type="password" name="" value="overlook2019" class="password-input">
       <button type="button" name="button" class="login-btn">Log In</button>
@@ -52,7 +52,29 @@
       </div>
     </section>
   </section>
-  <section class="manager-dash">
+  <section class="manager-dash hidden info-boxes">
+
+    <!-- <div class="welcome-user-nav">
+      <button id="book-room-btn" type="button" name="button">Book A Room</button>
+      <h2 class="username-h2">Welcome, [user]!</h2>
+    </div> -->
+    <div class="customer-info" id="past-bookings">
+      <h3 class="customer-info-h3">Rooms Available Tonight</h3>
+        <ul class="available-rooms inner-box">
+
+        </ul>
+    </div>
+    <div class="customer-info" id="upcoming-bookings">
+      <h3 class="customer-info-h3">Today's Revenue</h3>
+      <ul class="inner-box todays-revenue">
+      </ul>
+    </div>
+    <div class="customer-info" id="total-spent">
+      <h3 class="customer-info-h3">% Rooms Occupied</h3>
+      <div class="inner-box percent-occupied">
+
+      </div>
+    </div>
   </section>
 
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
