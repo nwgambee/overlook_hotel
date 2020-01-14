@@ -84,6 +84,13 @@ function changeToManagerDash() {
   $('.login-page').addClass('hidden');
   $('.manager-dash').removeClass('hidden');
   displayRevenue(booking.findTotalRevenue(todaysDate))
+  displayAvailRoomsManager(booking.findAvailableRooms(todaysDate))
+
+}
+
+function displayAvailRoomsManager(rooms) {
+  rooms.forEach(room => $('.available-rooms').append(`<li>Room ${room.number}, a ${room.roomType} with a ${room.bedSize} is still available for tonight. It costs $${room.costPerNight} per night.</li>`));
+  $('.percent-occupied').append(`<p id="percentage">${100* (1 - (rooms.length / roomData.length))}% of rooms are occupied tonight so far.</p>`)
 }
 
 function displayRevenue(revenue) {
