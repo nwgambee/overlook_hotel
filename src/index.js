@@ -41,8 +41,8 @@ function returnToHome() {
 function evaluateCredentials() {
   let passwordInputVal = $('.password-input').val();
   let usernameInputVal = $('.username-input').val();
-  let customerUserName = usernameInputVal.slice(0,8);
-  let customerId = parseInt(usernameInputVal.slice(8,10));
+  let customerUserName = usernameInputVal.slice(0, 8);
+  let customerId = parseInt(usernameInputVal.slice(8, 10));
 
   if (usernameInputVal.length === 10 && customerUserName === 'customer' && customerId <= 50 && passwordInputVal === 'overlook2019') {
     currentCustomer = new Customer(customerId, userData.find(data => customerId === data.id).name, booking.findPastBookings(todaysDate, customerId), booking.findUpcomingBookings(todaysDate, customerId));
@@ -104,17 +104,30 @@ function displayErrors() {
 function showBookingPage() {
   $('.room-booking').toggleClass('hidden');
   $('.info-boxes').toggleClass('hidden');
+  $('.manager-dash').addClass('hidden');
   $('#check-avail-btn').on('click', displayAvailableRooms);
 }
 
 function displayAvailableRooms() {
   $('.available-rooms').html('');
+  let selectedType = $('#room-type').val();
   let rawDate = $('#date-input').val();
-  let formattedDate = rawDate.toString().replace(/-/g,'/');
+  let formattedDate = rawDate.toString().replace(/-/g, '/');
   chosenDate = formattedDate;
-  let availableRooms = booking.findAvailableRooms(formattedDate);
-  availableRooms.forEach(room => $('.available-rooms').append(`<li>Room ${room.number}, a ${room.roomType} with a ${room.bedSize} is available this night. It costs $${room.costPerNight} per night.<button class="book-this-room" id="${room.number}">Book This Room</button></li>`));
-  $('.book-this-room').on('click', bookRoom);
+
+  let availableRooms = booking.findAvailableRooms(formattedDate, selectedType);
+  if (availableRooms.length === 0) {
+      displayApology();
+  } else {
+    availableRooms.forEach(room => $('.available-rooms').append(`<li>Room ${room.number}, a ${room.roomType} with a ${room.bedSize} is available this night. It costs $${room.costPerNight} per night.<button class="book-this-room" id="${room.number}">Book This Room</button></li>`));
+    $('.book-this-room').on('click', bookRoom);
+
+  }
+}
+
+function displayApology() {
+  $('.available-rooms').html('');
+  window.alert('We fiercly apologize, but there are no rooms of that type available for your selected date. Please enter a different date or choose a new room type')
 }
 
 // this is a little bit of duplication, trying to get around doing this
@@ -126,7 +139,7 @@ function bookRoom(event) {
 // helper functions //
 
 function getDate() {
-var today = new Date();
-var date = today.getFullYear()+'/0'+(today.getMonth()+1)+'/'+today.getDate();
-return date.toString();
+  var today = new Date();
+  var date = today.getFullYear() + '/0' + (today.getMonth() + 1) + '/' + today.getDate();
+  return date.toString();
 }

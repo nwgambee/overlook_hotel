@@ -17,8 +17,9 @@ class Bookings {
       return acc += pricePerRoom;
     }, 0);
   }
-  findAvailableRooms(date) {
-    return this.roomData.filter(room => {
+  findAvailableRooms(date, selectedType) {
+    let filteredByType = this.roomData.filter(room => room.roomType === selectedType)
+    return filteredByType.filter(room => {
       return !this.bookingData.find(booking => {
         return (room.number === booking.roomNumber && date === booking.date);
       })

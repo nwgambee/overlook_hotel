@@ -175,6 +175,16 @@ header {
   padding: 10px;
 }
 
+#room-type {
+  grid-area: room-list;
+  justify-self: start;
+}
+
+#room-type-label {
+  grid-area: room-list-label;
+  justify-self: end;
+}
+
 .room-booking {
   margin-left: 29%;
   width: 40%;
@@ -188,6 +198,7 @@ header {
   grid-template-areas:
     "book-room book-room"
     "date-label date-input"
+    "room-list-label room-list"
     "check-btn check-btn"
     "available-rooms available-rooms";
   grid-row-gap: 15px;
