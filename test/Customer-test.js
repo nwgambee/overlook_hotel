@@ -28,7 +28,6 @@ describe('Customer', function() {
     expect(customer).to.be.an.instanceOf(Customer);
   })
   it('should utilize fetch() in customer.bookRoom', function() {
-    // spyFetch = chai.spy.on('fetch');
     customer.bookRoom(5, '2020/11/11');
     expect(spyFetch).to.have.been.called(1);
   })
