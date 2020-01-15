@@ -40,7 +40,4 @@ describe('Customer', function() {
     expect(spyFetch).to.have.been.called(1);
   })
 
-
-
-
 })

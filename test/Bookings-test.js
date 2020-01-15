@@ -63,7 +63,11 @@ describe('Bookings', function() {
 
   it('should have access to the Bookings class', function() {
     expect(booking).to.be.an.instanceOf(Booking);
+  })
+  it('should have a bookingData property', function() {
     expect(booking.bookingData).to.be.a('array');
+  })
+  it('should have a roomData property', function() {
     expect(booking.roomData).to.be.a('array');
   })
   it('findPastBookings() method should find bookings older than the date', function() {
@@ -75,13 +79,14 @@ describe('Bookings', function() {
   it('getTotalSpent() method should return a number', function() {
     // receiving 'costPerNight is not defined' error. Unfortunately these less-than-robusts tests were all I had time for.
     expect(booking.getTotalSpent).to.be.a('function');
+    expect(booking.getTotalSpent(4)).to.equal(0);
   })
   it('findAvailableRooms() method should find bookings that match the parameters', function() {
     expect(booking.findAvailableRooms('2020/02/04', 'residential suite')[0].number).to.equal(1);
   })
   it('findTotalRevenue() method should return a number', function() {
-    // receiving 'costPerNight is not defined' error. Unfortunately these less-than-robusts tests were all I had time for.
     expect(booking.findTotalRevenue).to.be.a('function')
+    expect(booking.findTotalRevenue(9)).to.equal(0);
 
   })
 
