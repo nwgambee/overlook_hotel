@@ -10,7 +10,7 @@ The goal of this project was to create a very basic hotel management app that co
 1. in your terminal, run `npm run start`
 1. in your browser, type `localhost:8080` (or whatever server your terminal says the local server is running on)
 
-### Login, 
+### Login 
 the username has to be `manager` or `customerXX` where `XX` is any number between 0-50 (if choosing a number less than 10, be sure to add a zero before the digit. eg: customer04 or customer29). The password is `overlook2019`.
 
 
