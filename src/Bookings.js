@@ -12,7 +12,7 @@ class Bookings {
   getTotalSpent(id) {
     let currentGuestBookings = this.bookingData.filter(booking => booking.userID === id);
     return currentGuestBookings.reduce((acc, sum) => {
-      let pricePerRoom = Math.floor(this.roomData.find(room => room.number === sum.roomNumber).costPerNight);
+      let pricePerRoom = Math.floor(this.roomData.find(room => parseInt(room.number) === parseInt(sum.roomNumber)).costPerNight);
       return acc += pricePerRoom;
     }, 0);
   }
