@@ -100,7 +100,7 @@ function updateTotalSpendHTML() {
 function changeToManagerDash() {
   $('.login-page').addClass('hidden');
   $('.manager-dash').removeClass('hidden');
-  // NOTE: Due to bug, the dates below are hard coded in. Should be replaced with todaysDate, but manager functionality for today does not work 
+  // NOTE: Due to bug, the dates below are hard coded in. Should be replaced with todaysDate, but manager functionality for today does not work
   displayRevenue(booking.findTotalRevenue('2020/02/16'))
   displayAvailRoomsManager(booking.findAvailableRooms('2020/02/16'))
   $('#search-guest-btn').on('click', searchForGuest);
@@ -129,7 +129,7 @@ function displayGuestInfo() {
 }
 
 function updateUpcomingBookingsManager(upcomingBookings) {
-  upcomingBookings.forEach(booking => $('.upcoming-booked-list').append(`<li>They are staying in room ${booking.roomNumber} on ${booking.date}<button class="${booking.roomNumber} delete-booking-btn" id="delete-booking-btn">Delete Booking</button></li>`));
+  upcomingBookings.forEach(booking => $('.upcoming-booked-list').append(`<li>They are staying in room ${booking.roomNumber} on ${booking.date}<button class="${booking.roomNumber} ${booking.id} delete-booking-btn" id="delete-booking-btn">Delete Booking</button></li>`));
 }
 
 function displayAvailRoomsManager(rooms) {
@@ -155,7 +155,7 @@ function bookRoom(event) {
 }
 
 function removeBooking() {
-  manager.removeBooking(event.target.classList[0], chosenDate)
+  manager.removeBooking(event.target.classList[1])
   window.alert('Booking removed.')
 }
 

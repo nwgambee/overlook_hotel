@@ -4,15 +4,15 @@ class Manager extends Customer {
   constructor(id, name, pastBookings, upcomingBookings) {
     super(id, name, pastBookings, upcomingBookings)
   }
-  removeBooking(id, date) {
+  removeBooking(id) {
+    console.log(id);
     fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
       method: 'DELETE',
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        "userID": this.id,
-        "date": date,
+        id: id,
       })
     }).then(() => {
       console.log('room booking deleted!');
