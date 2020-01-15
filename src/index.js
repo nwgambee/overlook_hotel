@@ -67,6 +67,23 @@ function changeToCustomerDash() {
   updateTotalSpendHTML();
 }
 
+function displayAvailableRooms() {
+  $('.available-rooms').html('');
+  let selectedType = $('#room-type').val();
+  let rawDate = $('#date-input').val();
+  let formattedDate = rawDate.toString().replace(/-/g, '/');
+  chosenDate = formattedDate;
+
+  let availableRooms = booking.findAvailableRooms(formattedDate, selectedType);
+  if (availableRooms.length === 0) {
+    displayApology();
+  } else {
+    availableRooms.forEach(room => $('.available-rooms').append(`<li>Room ${room.number}, a ${room.roomType} with a ${room.bedSize} is available this night. It costs $${room.costPerNight} per night.<button class="book-this-room" id="${room.number}">Book This Room</button></li>`));
+    $('.book-this-room').on('click', bookRoom);
+
+  }
+}
+
 function updatePastBookingsHTML(pastBookings) {
   pastBookings.forEach(booking => $('.past-booked-list').append(`<li>You stayed in room ${booking.roomNumber} on ${booking.date}</li>`));
 }
@@ -107,11 +124,11 @@ function displayGuestInfo() {
   updateUpcomingBookingsManager(currentCustomer.upcomingBookings);
   updateTotalSpendHTML();
 
-  $('#delete-booking-btn').on('click', removeBooking)
+  $('.delete-booking-btn').on('click', removeBooking)
 }
 
 function updateUpcomingBookingsManager(upcomingBookings) {
-  upcomingBookings.forEach(booking => $('.upcoming-booked-list').append(`<li>They are staying in room ${booking.roomNumber} on ${booking.date}<button class="${booking.roomNumber}" id="delete-booking-btn">Delete Booking</button></li>`));
+  upcomingBookings.forEach(booking => $('.upcoming-booked-list').append(`<li>They are staying in room ${booking.roomNumber} on ${booking.date}<button class="${booking.roomNumber} delete-booking-btn" id="delete-booking-btn">Delete Booking</button></li>`));
 }
 
 function displayAvailRoomsManager(rooms) {
@@ -130,23 +147,6 @@ function showBookingPage() {
   $('#check-avail-btn').on('click', displayAvailableRooms);
 }
 
-function displayAvailableRooms() {
-  $('.available-rooms').html('');
-  let selectedType = $('#room-type').val();
-  let rawDate = $('#date-input').val();
-  let formattedDate = rawDate.toString().replace(/-/g, '/');
-  chosenDate = formattedDate;
-
-  let availableRooms = booking.findAvailableRooms(formattedDate, selectedType);
-  if (availableRooms.length === 0) {
-    displayApology();
-  } else {
-    availableRooms.forEach(room => $('.available-rooms').append(`<li>Room ${room.number}, a ${room.roomType} with a ${room.bedSize} is available this night. It costs $${room.costPerNight} per night.<button class="book-this-room" id="${room.number}">Book This Room</button></li>`));
-    $('.book-this-room').on('click', bookRoom);
-
-  }
-}
-
 // these two functions are a little bit of duplication, trying to get around doing this
 function bookRoom(event) {
   currentCustomer.bookRoom(event.target.id, chosenDate)
@@ -155,6 +155,7 @@ function bookRoom(event) {
 
 function removeBooking() {
   manager.removeBooking(event.target.classList[0], chosenDate)
+  window.alert('Booking removed.')
 }
 
 // helper functions //
