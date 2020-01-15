@@ -11,7 +11,7 @@ describe('Manager', function() {
   let spyFetch;
 
   beforeEach(function() {
-    manager = new Manager();
+    manager = new Manager(13, 'Christina Kulas',[],[]);
     spyFetch = chai.spy.on(global, 'fetch', () => {
       return new Promise((resolve, reject) => {
         resolve({message: 'fetch complete'})
@@ -26,6 +26,14 @@ describe('Manager', function() {
 
   it('should have access to the Manager class', function() {
     expect(manager).to.be.an.instanceOf(Manager);
+  })
+  it('should have a name and id property', function() {
+    expect(manager.id).to.equal(13);
+    expect(manager.name).to.equal('Christina Kulas')
+  })
+  it('should have two booking properties', function() {
+    expect(manager.pastBookings).to.be.a('array');
+    expect(manager.upcomingBookings).to.be.a('array');
   })
 
   it('should utilize fetch() in manager.removeBooking', function() {
