@@ -100,8 +100,9 @@ function updateTotalSpendHTML() {
 function changeToManagerDash() {
   $('.login-page').addClass('hidden');
   $('.manager-dash').removeClass('hidden');
-  displayRevenue(booking.findTotalRevenue(todaysDate))
-  displayAvailRoomsManager(booking.findAvailableRooms(todaysDate))
+  // NOTE: Due to bug, the dates below are hard coded in. Should be replaced with todaysDate, but manager functionality for today does not work 
+  displayRevenue(booking.findTotalRevenue('2020/02/16'))
+  displayAvailRoomsManager(booking.findAvailableRooms('2020/02/16'))
   $('#search-guest-btn').on('click', searchForGuest);
 }
 
