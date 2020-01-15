@@ -75,10 +75,6 @@ function updateUpcomingBookingsHTML(upcomingBookings) {
   upcomingBookings.forEach(booking => $('.upcoming-booked-list').append(`<li>You are staying in room ${booking.roomNumber} on ${booking.date}</li>`));
 }
 
-function updateUpcomingBookingsManager(upcomingBookings) {
-  upcomingBookings.forEach(booking => $('.upcoming-booked-list').append(`<li>You are staying in room ${booking.roomNumber} on ${booking.date}<button class="${booking.roomNumber}" id="delete-booking-btn">Delete Booking</button></li>`));
-}
-
 function updateTotalSpendHTML() {
   $('#dollar-amount').text(`$${booking.getTotalSpent(currentCustomer.id)}`);
 }
@@ -104,7 +100,7 @@ function displayGuestInfo() {
   $('.manager-dash').addClass('hidden');
   $('.customer-dash').removeClass('hidden');
   $('.username-h2').text(`Manager Portal for Guest: ${currentCustomer.name}`);
-  $('#book-room-btn').text('Adjust Guest Bookings');
+  $('#book-room-btn').text('Add Guest Booking');
   $('#book-room-btn').on('click', showBookingPage);
 
   updatePastBookingsHTML(currentCustomer.pastBookings);
@@ -112,6 +108,10 @@ function displayGuestInfo() {
   updateTotalSpendHTML();
 
   $('#delete-booking-btn').on('click', removeBooking)
+}
+
+function updateUpcomingBookingsManager(upcomingBookings) {
+  upcomingBookings.forEach(booking => $('.upcoming-booked-list').append(`<li>They are staying in room ${booking.roomNumber} on ${booking.date}<button class="${booking.roomNumber}" id="delete-booking-btn">Delete Booking</button></li>`));
 }
 
 function displayAvailRoomsManager(rooms) {
