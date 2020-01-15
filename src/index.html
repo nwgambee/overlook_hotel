@@ -5,6 +5,7 @@
   <title>Overlook Hotel</title>
   <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <header>
     <h1 class="title">OVERLOOK HOTEL</h1>
@@ -30,10 +31,10 @@
       <input id="date-input" type="date" name="" value="">
       <label id="room-type-label" for="room-type"> Room Type:</label>
       <select id="room-type">
-        <option value ="suite">Suite</option>
-        <option value ="junior suite">Junior Suite</option>
-        <option value ="single room">Single</option>
-        <option value ="residential suite">Residential Suite</option>
+        <option value="suite">Suite</option>
+        <option value="junior suite">Junior Suite</option>
+        <option value="single room">Single</option>
+        <option value="residential suite">Residential Suite</option>
       </select>
       <button id="check-avail-btn" type="button" name="button">Check Availibility</button>
       <ul class="available-rooms">
@@ -65,13 +66,13 @@
       <button id="book-room-btn" type="button" name="button">Book A Room</button>
       <h2 class="username-h2">Welcome, [user]!</h2>
     </div> -->
-    <div class="customer-info" id="past-bookings">
+    <div class="customer-info" id="rooms-left">
       <h3 class="customer-info-h3">Rooms Available Tonight</h3>
-        <ul class="available-rooms inner-box">
+      <ul class="available-rooms inner-box">
 
-        </ul>
+      </ul>
     </div>
-    <div class="customer-info" id="upcoming-bookings">
+    <div class="customer-info" id="todays-revenue-div">
       <h3 class="customer-info-h3">Today's Revenue</h3>
       <ul class="inner-box todays-revenue">
       </ul>
@@ -80,6 +81,31 @@
       <h3 class="customer-info-h3">% Rooms Occupied</h3>
       <div class="inner-box percent-occupied">
 
+      </div>
+    </div>
+
+    <div class="user-search-form">
+      <label for="user-search-input">Search for Guest:</label>
+      <input type="text" class="user-search-input" name="" value="Rocio Schuster">
+      <button id="search-guest-btn" type="button" name="button">Search for Guest</button>
+
+    </div>
+  </section>
+  <section class="guest-data-manager hidden info-boxes">
+    <div class="customer-info" id="past-bookings">
+      <h3 class="customer-info-h3">Past Bookings</h3>
+      <ul class="inner-box past-booked-list">
+      </ul>
+    </div>
+    <div class="customer-info" id="upcoming-bookings">
+      <h3 class="customer-info-h3">Upcoming Bookings</h3>
+      <ul class="inner-box upcoming-booked-list">
+      </ul>
+    </div>
+    <div class="customer-info" id="total-spent">
+      <h3 class="customer-info-h3">Total Spent To Date</h3>
+      <div class="inner-box">
+        <p id="dollar-amount">$610</p>
       </div>
     </div>
   </section>
