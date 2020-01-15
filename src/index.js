@@ -76,6 +76,10 @@ function updateUpcomingBookingsHTML(upcomingBookings) {
   upcomingBookings.forEach(booking => $('.upcoming-booked-list').append(`<li>You are staying in room ${booking.roomNumber} on ${booking.date}</li>`));
 }
 
+function updateUpcomingBookingsManager(upcomingBookings) {
+  upcomingBookings.forEach(booking => $('.upcoming-booked-list').append(`<li>You are staying in room ${booking.roomNumber} on ${booking.date}<button class="${booking.roomNumber}" id="delete-booking-btn">Delete Booking</button></li>`));
+}
+
 function updateTotalSpendHTML(pastBookings) {
   $('#dollar-amount').text(`$${booking.getTotalSpent(currentCustomer.id)}`);
 }
@@ -85,8 +89,32 @@ function changeToManagerDash() {
   $('.manager-dash').removeClass('hidden');
   displayRevenue(booking.findTotalRevenue(todaysDate))
   displayAvailRoomsManager(booking.findAvailableRooms(todaysDate))
-
+  $('#search-guest-btn').on('click', searchForGuest);
 }
+
+function searchForGuest() {
+  let nameToFind = $('.user-search-input').val();
+  let searchedUserID = userData.find(user => user.name === nameToFind).id;
+  currentCustomer = new Customer(searchedUserID, userData.find(data => searchedUserID === data.id).name, booking.findPastBookings(todaysDate, searchedUserID), booking.findUpcomingBookings(todaysDate, searchedUserID));
+
+  displayGuestInfo();
+}
+
+function displayGuestInfo() {
+  $('.manager-dash').addClass('hidden');
+  $('.customer-dash').removeClass('hidden');
+  $('.username-h2').text(`Manager Portal for Guest: ${currentCustomer.name}`);
+  $('#book-room-btn').text('Adjust Guest Bookings');
+  $('#book-room-btn').on('click', showBookingPage);
+
+  updatePastBookingsHTML(currentCustomer.pastBookings);
+  updateUpcomingBookingsManager(currentCustomer.upcomingBookings);
+  updateTotalSpendHTML();
+
+  $('#delete-booking-btn').on('click', removeBooking)
+}
+
+
 
 function displayAvailRoomsManager(rooms) {
   rooms.forEach(room => $('.available-rooms').append(`<li>Room ${room.number}, a ${room.roomType} with a ${room.bedSize} is still available for tonight. It costs $${room.costPerNight} per night.</li>`));
@@ -102,8 +130,8 @@ function displayErrors() {
 }
 
 function showBookingPage() {
-  $('.room-booking').toggleClass('hidden');
-  $('.info-boxes').toggleClass('hidden');
+  $('.room-booking').removeClass('hidden');
+  $('.info-boxes').addClass('hidden');
   $('.manager-dash').addClass('hidden');
   $('#check-avail-btn').on('click', displayAvailableRooms);
 }
@@ -117,7 +145,7 @@ function displayAvailableRooms() {
 
   let availableRooms = booking.findAvailableRooms(formattedDate, selectedType);
   if (availableRooms.length === 0) {
-      displayApology();
+    displayApology();
   } else {
     availableRooms.forEach(room => $('.available-rooms').append(`<li>Room ${room.number}, a ${room.roomType} with a ${room.bedSize} is available this night. It costs $${room.costPerNight} per night.<button class="book-this-room" id="${room.number}">Book This Room</button></li>`));
     $('.book-this-room').on('click', bookRoom);
@@ -130,10 +158,14 @@ function displayApology() {
   window.alert('We fiercly apologize, but there are no rooms of that type available for your selected date. Please enter a different date or choose a new room type')
 }
 
-// this is a little bit of duplication, trying to get around doing this
+// these two functions are a little bit of duplication, trying to get around doing this
 function bookRoom(event) {
   currentCustomer.bookRoom(event.target.id, chosenDate)
   window.alert(`Room ${event.target.id} has been booked for ${chosenDate}.`)
+}
+
+function removeBooking() {
+  manager.removeBooking(event.target.classList[0], chosenDate)
 }
 
 // helper functions //
